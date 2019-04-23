@@ -61,7 +61,14 @@ module Alchemy
             type: 'error'
           }
         end
-        render :update
+
+        respond_to do |format|
+          format.js {
+            render :update
+          }
+          format.html { redirect_to_index }
+        end
+
       end
 
       def update_multiple
