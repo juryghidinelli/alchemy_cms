@@ -1,12 +1,17 @@
 <%= alchemy_form_for [:admin, @picture] do |f| %>
   <%= f.input :name %>
-  <%= f.input :image_file, as: "file" %>
-
   <div class="input tag_list">
     <%= f.label :tag_list %>
     <%= render 'alchemy/admin/partials/autocomplete_tag_list', f: f %>
     <small class="hint"><%= Alchemy.t('Please seperate the tags with commata') %></small>
   </div>
+
+  <div class="upload-button-wrapper">
+    <button class="btn"><%= Alchemy.t(:file_upload) %> </button>
+    <%= f.input :image_file, as: "file", label: false %>
+  </div>
+
+
   <%= hidden_field_tag :q, search_filter_params[:q] %>
   <%= hidden_field_tag :size, params[:size] %>
   <%= hidden_field_tag :tagged_with, search_filter_params[:tagged_with] %>
